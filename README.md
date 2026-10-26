@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Splendid Admin
 
-## Getting Started
+Panel Pasar Splendid Malang menggunakan Next.js App Router.
 
-First, run the development server:
+## Menjalankan aplikasi lokal
 
-```bash
+Pastikan layanan MySQL/MariaDB Laragon aktif, lalu jalankan backend di terminal pertama:
+
+```powershell
+cd "..\backend admin"
+Copy-Item .env.example .env
+# Atur ADMIN_EMAIL, ADMIN_PASSWORD, dan AUTH_TOKEN_SECRET di .env
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`AUTH_TOKEN_SECRET` harus berisi minimal 32 karakter. Backend membuat database `admin_splendid` bila belum ada dan membuat tabel khusus untuk bunga, burung, ikan hias, hewan peliharaan, perlengkapan, inventaris, pengguna, forum, lokasi pasar, dan profil admin. Pastikan `DB_USER` memiliki izin membuat database jika database belum dibuat.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Jalankan frontend di terminal kedua:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```powershell
+cd "..\splendid-admin"
+Copy-Item .env.example .env.local
+npm install
+npm run dev
+```
 
-## Learn More
+Buka `http://localhost:3000`. Permintaan `/api` diteruskan oleh Next.js ke `BACKEND_API_URL` (default `http://127.0.0.1:4000/api`), jadi backend dan MySQL perlu tetap berjalan. Jika backend mati, halaman menampilkan pesan koneksi yang bisa ditindaklanjuti alih-alih error browser `Failed to fetch`.
 
-To learn more about Next.js, take a look at the following resources:
+## API admin
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `POST /api/auth/login` menerima `{ "email", "password" }` dan mengembalikan token Bearer.
+- `POST /api/auth/register` menerima `{ "name", "email", "password" }` untuk membuat akun admin; endpoint ini memerlukan token admin aktif.
+- `GET /api/auth/me` memvalidasi token sesi.
+- `POST /api/auth/logout` mengakhiri sesi aktif.
+- `POST /api/auth/change-password` menerima `{ "currentPassword", "newPassword" }` untuk mengganti kata sandi admin yang sedang masuk.
+- `GET /api/data/:collection` mencantumkan data koleksi.
+- `GET /api/data/:collection/:id` mengambil satu data.
+- `POST /api/data/:collection` membuat data.
+- `PUT` atau `PATCH /api/data/:collection/:id` memperbarui data.
+- `DELETE /api/data/:collection/:id` menghapus data.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Semua endpoint `/api/data/*` memerlukan header `Authorization: Bearer <token>`. Koleksi menerima huruf, angka, tanda hubung, dan garis bawah, misalnya `flowers`, `birds`, `pets`, `supplies`, `users`, atau `inventory`. Setiap record memiliki `id`, `createdAt`, dan `updatedAt` yang dikelola API.

@@ -1,26 +1,221 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root.dark {
+	color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	min-height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+	max-width: 100%;
+}
+
+.page-shell,
+.page-canvas {
+	width: 100%;
+	min-height: 100dvh;
+}
+
+.page-frame {
+	display: flex;
+	align-items: stretch;
+	width: 100%;
+	min-height: 100dvh;
+}
+
+.page-sidebar {
+	flex: 0 0 15rem;
+	min-width: 0;
+}
+
+.page-frame > :nth-child(2) {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.page-login-canvas {
+	padding-inline: clamp(1rem, 8vw, 10rem);
+}
+
+.confirmation-overlay {
+	min-height: 100dvh;
+	padding-block: clamp(1.5rem, 12vh, 20rem);
+}
+
+.confirmation-dialog {
+	width: min(32.5rem, calc(100% - 2rem));
+	max-width: 100%;
+}
+
+@media (max-width: 1023px) {
+	.page-frame {
+		flex-direction: column;
+	}
+
+	.page-sidebar {
+		width: 100% !important;
+		flex: 0 0 auto !important;
+		padding: 1rem !important;
+	}
+
+	.page-sidebar-content {
+		gap: 1rem !important;
+		margin-bottom: 1rem !important;
+	}
+
+	.page-sidebar-content > :nth-child(2) {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 0.5rem;
+	}
+
+	.page-sidebar-content > :nth-child(2) > :first-child {
+		grid-column: 1 / -1;
+	}
+
+	.page-sidebar-content > :nth-child(2) > a {
+		min-width: 0;
+	}
+
+	.page-frame > :nth-child(2) {
+		width: 100%;
+		flex: 1 1 auto;
+		padding: 1rem !important;
+	}
+
+	.page-frame > :nth-child(2) [class*="w-["] {
+		max-width: 100%;
+	}
+
+	.page-frame > :nth-child(2) [class*="grid-cols-"] {
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)) !important;
+	}
+
+	.page-frame > :nth-child(2) > * {
+		min-width: 0;
+	}
+
+	.page-frame > :nth-child(2) [class*="items-center"][class*="self-stretch"],
+	.page-frame > :nth-child(2) [class*="justify-between"] {
+		flex-wrap: wrap;
+		row-gap: 0.75rem;
+	}
+
+	.page-login-canvas {
+		padding: 1.5rem !important;
+	}
+
+	.login-header {
+		flex-direction: column;
+		align-items: stretch !important;
+		gap: 1rem;
+		margin-bottom: 1.5rem !important;
+	}
+
+	.login-header > .flex-1 {
+		flex-direction: column;
+		align-items: stretch !important;
+		gap: 1rem;
+	}
+
+	.login-header > .flex-1 > .flex-1 {
+		width: 100%;
+	}
+
+	.login-card {
+		flex-direction: column;
+		align-items: stretch !important;
+		margin-bottom: 1.5rem !important;
+	}
+
+	.login-hero,
+	.login-panel {
+		width: 100%;
+		flex: 1 1 auto !important;
+		padding: 1.5rem !important;
+	}
+
+	.login-hero {
+		min-height: 18rem;
+	}
+
+	.login-hero button {
+		margin-bottom: 2rem !important;
+	}
+
+	.login-panel > div {
+		width: 100% !important;
+		margin-inline: 0 !important;
+		padding-inline: 0 !important;
+	}
+
+	.login-panel [class*="w-["] {
+		max-width: 100%;
+	}
+
+	.login-panel form button {
+		padding-inline: 1rem !important;
+	}
+
+	.confirmation-overlay {
+		padding: 1rem !important;
+	}
+
+	.confirmation-dialog {
+		width: min(100%, 32.5rem) !important;
+		padding: 1.25rem !important;
+		gap: 1rem !important;
+	}
+
+	.confirmation-dialog > div,
+	.confirmation-dialog > button {
+		max-width: 100%;
+		margin-inline: 0.5rem !important;
+	}
+}
+
+@media (max-width: 600px) {
+	.page-sidebar-content > :nth-child(2) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.page-sidebar-content > :nth-child(2) > a {
+		font-size: 0.75rem;
+	}
+
+	.page-frame > :nth-child(2) {
+		padding: 0.75rem !important;
+	}
+
+	.page-frame > :nth-child(2) [class*="text-[10px]"],
+	.page-frame > :nth-child(2) [class*="text-[11px]"] {
+		font-size: 0.75rem !important;
+		line-height: 1.1rem;
+	}
+
+	.confirmation-dialog > div,
+	.confirmation-dialog > button {
+		margin-inline: 0 !important;
+	}
 }
