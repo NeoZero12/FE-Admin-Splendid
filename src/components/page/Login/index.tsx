@@ -2,7 +2,8 @@
 
 import React, {useState} from "react";
 import { useRouter } from "next/navigation";
-import { API_BASE_URL, AUTH_TOKEN_KEY } from "@/src/lib/auth";
+import Image from "next/image";
+import { API_BASE_URL, AUTH_TOKEN_KEY } from "@/lib/auth";
 export default function Login() {
 	const router = useRouter();
 	const [input1, onChangeInput1] = useState('');
@@ -44,10 +45,10 @@ export default function Login() {
 				<div className="login-header flex items-center self-stretch mb-[52px]">
 					<div className="flex flex-1 justify-between items-center">
 						<div className="flex shrink-0 items-center gap-2.5">
-							<img
+							<Image
 								src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/0fUDfART7Y/h75en120_expires_30_days.png"} 
 								className="w-[38px] h-[38px] rounded-xl object-fill"
-							/>
+							alt="" width={38} height={38} unoptimized/>
 							<div className="flex flex-col shrink-0 items-start gap-[1px]">
 								<span className="text-[#17253A] text-[17px] font-bold" >
 									Pasar Splendid
@@ -63,20 +64,20 @@ export default function Login() {
 					</div>
 					<div className="flex shrink-0 items-center gap-2">
 						<a href="https://www.google.com/maps/search/?api=1&query=Pasar+Splendid+Malang" target="_blank" rel="noreferrer" className="flex shrink-0 items-center bg-white text-left py-2 px-3 gap-2 rounded-lg border border-solid border-[#E6EBF0]">
-							<img
+							<Image
 								src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/0fUDfART7Y/w98947py_expires_30_days.png"} 
 								className="w-3.5 h-3.5 rounded-lg object-fill"
-							/>
+							alt="" width={14} height={14} unoptimized/>
 							<span className="text-[#17253A] text-xs font-bold" >
 								Kembali ke pasar
 							</span>
 						</a>
 						<button className="flex shrink-0 items-center bg-white text-left py-2 px-3 gap-2 rounded-lg border border-solid border-[#E6EBF0]"
 							type="button" onClick={() => setHelpTopic("help")}>
-							<img
+							<Image
 								src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/0fUDfART7Y/p6rbi0cs_expires_30_days.png"} 
 								className="w-3.5 h-3.5 rounded-lg object-fill"
-							/>
+							alt="" width={14} height={14} unoptimized/>
 							<span className="text-[#17253A] text-xs font-bold" >
 								Bantuan
 							</span>
@@ -92,10 +93,10 @@ export default function Login() {
 							background: "linear-gradient(180deg, #0B132B24, #0B132B14, #0B132BED)"
 						}}>
 						<a href="https://www.google.com/maps/search/?api=1&query=Pasar+Splendid+Malang" target="_blank" rel="noreferrer" className="flex items-center bg-[#FFFFFFE6] text-left py-2 px-[13px] mb-4 lg:mb-[347px] ml-0 lg:ml-11 gap-[7px] rounded-[100px] border-0">
-							<img
+							<Image
 								src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/0fUDfART7Y/ljbxogqz_expires_30_days.png"} 
 								className="w-3.5 h-3.5 rounded-[100px] object-fill"
-							/>
+							alt="" width={14} height={14} unoptimized/>
 							<span className="text-[#17253A] text-[11px] font-bold" >
 								MALANG, JAWA TIMUR
 							</span>
@@ -121,10 +122,10 @@ export default function Login() {
 					</div>
 					<div className="login-panel flex flex-1 flex-col items-start pt-[52px]">
 						<div className="flex items-center mb-6 ml-0 lg:ml-14 gap-2.5">
-							<img
+							<Image
 								src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/0fUDfART7Y/y8akho88_expires_30_days.png"} 
 								className="w-[38px] h-[38px] rounded-xl object-fill"
-							/>
+							alt="" width={38} height={38} unoptimized/>
 							<div className="flex flex-col shrink-0 items-start gap-[1px]">
 								<span className="text-[#17253A] text-[17px] font-bold" >
 									Pasar Splendid
@@ -152,10 +153,10 @@ export default function Login() {
 										Email
 									</span>
 									<div className="flex items-center self-stretch bg-white rounded-lg border border-solid border-[#E6EBF0]">
-										<img
+										<Image
 											src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/0fUDfART7Y/52btpt3n_expires_30_days.png"} 
 											className="w-[17px] h-[17px] ml-3.5 mr-2.5 rounded-lg object-fill"
-										/>
+										alt="" width={17} height={17} unoptimized/>
 										<input
 										type="email"
 										name="email"
@@ -173,10 +174,10 @@ export default function Login() {
 										Kata sandi
 									</span>
 									<div className="flex items-center self-stretch bg-white py-3 px-3.5 rounded-lg border border-solid border-[#E6EBF0]">
-										<img
+										<Image
 											src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/0fUDfART7Y/v5ch58kl_expires_30_days.png"} 
 											className="w-[17px] h-[17px] mr-2.5 rounded-lg object-fill"
-										/>
+										alt="" width={17} height={17} unoptimized/>
 													<input
 														type={passwordVisible ? "text" : "password"}
 											name="password"
@@ -188,10 +189,10 @@ export default function Login() {
 											className="flex-1 min-w-0 text-[#69788B] bg-transparent text-sm border-0 outline-none"
 										/>
 										<button type="button" aria-label={passwordVisible ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"} aria-pressed={passwordVisible} onClick={() => setPasswordVisible((visible) => !visible)} className="rounded p-1 text-slate-500 hover:bg-slate-100">
-											<img
+											<Image
 												src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/0fUDfART7Y/8c7bqd0f_expires_30_days.png"}
 												className="h-[17px] w-[17px] rounded-lg object-fill"
-											/>
+											alt="" width={17} height={17} unoptimized/>
 										</button>
 									</div>
 								</div>
@@ -211,10 +212,10 @@ export default function Login() {
 								<span className="text-white text-sm font-bold" >
 									{submitting ? 'Memeriksa…' : 'Masuk'}
 								</span>
-								<img
+								<Image
 									src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/0fUDfART7Y/k6y6wh11_expires_30_days.png"} 
 									className="w-[18px] h-[18px] rounded-lg object-fill"
-								/>
+								alt="" width={18} height={18} unoptimized/>
 							</button>
 						</div>
 						{error && <p role="alert" className="mb-6 text-center text-sm text-red-600">{error}</p>}
@@ -231,10 +232,10 @@ export default function Login() {
 						</div>
 						<div className="flex flex-col items-center self-stretch mb-[103px]">
 							<div className="flex items-center py-1.5 gap-2">
-								<img
+								<Image
 									src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/0fUDfART7Y/3qhd1xnk_expires_30_days.png"} 
 									className="w-[17px] h-[17px] object-fill"
-								/>
+								alt="" width={17} height={17} unoptimized/>
 								<span className="text-[#69788B] text-[11px]" >
 									Data Anda aman. Bersama membangun pasar yang lebih terhubung.
 								</span>

@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
-import { AUTH_TOKEN_KEY, endSession, validateSession } from "@/src/lib/auth";
+import { AUTH_TOKEN_KEY, endSession, validateSession } from "@/lib/auth";
 
 function getStoredToken(): string | null {
 	return (

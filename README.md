@@ -7,8 +7,8 @@ Panel Pasar Splendid Malang menggunakan Next.js App Router.
 Pastikan layanan MySQL/MariaDB Laragon aktif, lalu jalankan backend di terminal pertama:
 
 ```powershell
-cd "..\backend admin"
-Copy-Item .env.example .env
+cd "..\backend-admin"
+if (-not (Test-Path .env)) { Copy-Item .env.example .env }
 # Atur ADMIN_EMAIL, ADMIN_PASSWORD, dan AUTH_TOKEN_SECRET di .env
 npm install
 npm run dev
@@ -20,7 +20,7 @@ Jalankan frontend di terminal kedua:
 
 ```powershell
 cd "..\splendid-admin"
-Copy-Item .env.example .env.local
+if (-not (Test-Path .env.local)) { Copy-Item .env.example .env.local }
 npm install
 npm run dev
 ```

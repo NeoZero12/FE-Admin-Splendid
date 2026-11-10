@@ -13,7 +13,7 @@ import {
 	type AdminIdentity,
 	type AdminRecord,
 	updateRecord,
-} from "@/src/lib/admin-data";
+} from "@/lib/admin-data";
 
 type Field = {
 	key: string;

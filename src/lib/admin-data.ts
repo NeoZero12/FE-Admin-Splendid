@@ -1,4 +1,4 @@
-import { API_BASE_URL, AUTH_TOKEN_KEY } from "@/src/lib/auth";
+import { API_BASE_URL, AUTH_TOKEN_KEY } from "@/lib/auth";
 
 export type AdminRecord = {
 	id: string;
